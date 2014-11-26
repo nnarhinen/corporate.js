@@ -1,0 +1,26 @@
+{
+  "name": "corporate",
+  "version": "0.0.1",
+  "description": "A module for parsing (mostly) ISO20022 messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "author": "Niklas Närhinen <niklas@narhinen.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "cucumber": "^0.4.4",
+    "should": "^4.3.0",
+    "sinon": "^1.12.1"
+  },
+  "dependencies": {
+    "moment": "^2.8.4",
+    "underscore": "^1.7.0",
+    "xmlbuilder": "^2.4.5",
+    "xmldom": "^0.1.19"
+  },
+  "jshintConfig": {
+    "strict": true,
+    "node": true
+  }
+}
