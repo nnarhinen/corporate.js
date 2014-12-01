@@ -68,3 +68,67 @@ Feature: pain.002.001.03
       }
     }
     """
+
+  Scenario: Accepted payment material
+    Given xml payload:
+    """xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <CstmrPmtStsRpt>
+        <GrpHdr>
+          <MsgId>1539898</MsgId>
+          <CreDtTm>2014-01-08T13:33:47+02:00</CreDtTm>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+          <OrgnlMsgId>20140102-0000001</OrgnlMsgId>
+          <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+          <OrgnlCreDtTm>2014-01-08T10:24:00+02:00</OrgnlCreDtTm>
+          <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+          <GrpSts>ACCP</GrpSts>
+        </OrgnlGrpInfAndSts>
+        <OrgnlPmtInfAndSts>
+          <OrgnlPmtInfId>20110102-123456-01</OrgnlPmtInfId>
+          <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+          <OrgnlCtrlSum>90.08</OrgnlCtrlSum>
+          <PmtInfSts>ACCP</PmtInfSts>
+          <NbOfTxsPerSts>
+            <DtldNbOfTxs>1</DtldNbOfTxs>
+            <DtldSts>ACCP</DtldSts>
+            <DtldCtrlSum>90.08</DtldCtrlSum>
+          </NbOfTxsPerSts>
+          <TxInfAndSts>
+            <OrgnlTxRef>
+              <Amt>
+                <InstdAmt Ccy="EUR">90.08</InstdAmt>
+              </Amt>
+              <ReqdExctnDt>2014-01-08</ReqdExctnDt>
+              <UltmtDbtr>
+                <Nm>Alkuper&#xE4;inen Maksaja</Nm>
+              </UltmtDbtr>
+              <Dbtr>
+                <Nm>Firma Oy</Nm>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>FI9250009420108078</IBAN>
+                </Id>
+              </DbtrAcct>
+            </OrgnlTxRef>
+          </TxInfAndSts>
+        </OrgnlPmtInfAndSts>
+      </CstmrPmtStsRpt>
+    </Document>
+    """
+    When I parse the xml payload as pain.002.001.03
+    Then the result hash map should be
+    """js
+    {
+      originalMessageIdentification: "20140102-0000001",
+      originalMessageNameIdentification: "pain.001.001.03",
+      groupStatus: "ACCP",
+      paymentGroups: [{
+        originalPaymentInformationId: "20110102-123456-01",
+        paymentInformationStatus: "ACCP"
+      }]
+    }
+    """

@@ -21,6 +21,15 @@ function pain00200103(str) {
       additionalInformation: Array.prototype.map.call(select('a:AddtlInf/text()', stsRsnInf[0]), function(one) { return one.toString(); }).join('')
     };
   }
+  var orgnlPmtInfos = select('/a:Document/a:CstmrPmtStsRpt/a:OrgnlPmtInfAndSts', doc);
+  if (orgnlPmtInfos.length) {
+    ret.paymentGroups = Array.prototype.map.call(orgnlPmtInfos, function(info) {
+      return {
+        originalPaymentInformationId: select('a:OrgnlPmtInfId/text()', info).toString(),
+        paymentInformationStatus: select('a:PmtInfSts/text()', info).toString()
+      };
+    });
+  }
 
   return ret;
 }
