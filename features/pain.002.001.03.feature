@@ -337,3 +337,77 @@ Feature: pain.002.001.03
       }]
     }
     """
+
+  Scenario: rejected payment material
+    Given xml payload:
+    """xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <CstmrPmtStsRpt>
+        <GrpHdr>
+          <MsgId>3395684</MsgId>
+          <CreDtTm>2014-01-08T13:32:45+02:00</CreDtTm>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+          <OrgnlMsgId>MsgId_20140108-00004</OrgnlMsgId>
+          <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+          <OrgnlCreDtTm>2014-01-08T10:24:00+02:00</OrgnlCreDtTm>
+          <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+          <GrpSts>RJCT</GrpSts>
+        </OrgnlGrpInfAndSts>
+        <OrgnlPmtInfAndSts>
+          <OrgnlPmtInfId>20140108-123456-01</OrgnlPmtInfId>
+          <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+          <OrgnlCtrlSum>13.08</OrgnlCtrlSum>
+          <PmtInfSts>RJCT</PmtInfSts>
+          <StsRsnInf>
+            <Rsn>
+              <Cd>DT01</Cd>
+            </Rsn>
+            <AddtlInf>Eräpäivä virheellinen.</AddtlInf>
+          </StsRsnInf>
+          <NbOfTxsPerSts>
+            <DtldNbOfTxs>1</DtldNbOfTxs>
+            <DtldSts>RJCT</DtldSts>
+            <DtldCtrlSum>13.08</DtldCtrlSum>
+          </NbOfTxsPerSts>
+          <TxInfAndSts>
+            <OrgnlTxRef>
+              <Amt>
+                <InstdAmt Ccy="EUR">13.08</InstdAmt>
+              </Amt>
+              <ReqdExctnDt>2014-01-02</ReqdExctnDt>
+              <UltmtDbtr>
+                <Nm>Alkuperäinen Maksaja</Nm>
+              </UltmtDbtr>
+              <Dbtr>
+                <Nm>Firma Oy</Nm>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>FI9250009420108078</IBAN>
+                </Id>
+              </DbtrAcct>
+            </OrgnlTxRef>
+          </TxInfAndSts>
+        </OrgnlPmtInfAndSts>
+      </CstmrPmtStsRpt>
+    </Document>
+    """
+    When I parse the xml payload as pain.002.001.03
+    Then the result hash map should be
+    """js
+    {
+      originalMessageIdentification: "MsgId_20140108-00004",
+      originalMessageNameIdentification: "pain.001.001.03",
+      groupStatus: "RJCT",
+      paymentGroups: [{
+        originalPaymentInformationId: "20140108-123456-01",
+        paymentInformationStatus: "RJCT",
+        statusReasonInformation: {
+          reasonCode: "DT01",
+          additionalInformation: "Eräpäivä virheellinen."
+        }
+      }]
+    }
+    """
