@@ -50,4 +50,20 @@ module.exports = function() {
     if (this.clock) this.clock.restore();
     cb();
   });
+
+  this.Given(/^xml payload:$/, function (string, callback) {
+    this.xml = string;
+    callback();
+  });
+
+  this.When(/^I parse the xml payload as pain\.002\.001\.03$/, function (callback) {
+    this.parsedResult = corporate.pain00200103(this.xml);
+    callback();
+  });
+
+  this.Then(/^the result hash map should be$/, function (string, callback) {
+    var expected = eval('(' + string + ')');
+    this.parsedResult.should.eql(expected);
+    callback();
+  }); 
 };

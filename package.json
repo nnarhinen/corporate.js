@@ -17,7 +17,8 @@
     "moment": "^2.8.4",
     "underscore": "^1.7.0",
     "xmlbuilder": "^2.4.5",
-    "xmldom": "^0.1.19"
+    "xmldom": "^0.1.19",
+    "xpath": "0.0.7"
   },
   "jshintConfig": {
     "strict": true,

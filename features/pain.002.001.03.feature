@@ -21,11 +21,12 @@ Feature: pain.002.001.03
     """
     When I parse the xml payload as pain.002.001.03
     Then the result hash map should be
-    """clojure
-    {:original-group-information-and-status {:original-message-identification "20110102-0000001"
-                                             :original-message-name-identification "pain.001.001.03"
-                                             :group-status "ACTC"
-                                             :status-reason-information nil}}
+    """js
+    {
+      originalMessageIdentification: "20110102-0000001",
+      originalMessageNameIdentification: "pain.001.001.03",
+      groupStatus: "ACTC"
+    }
     """
 
   Scenario: Rejected technical check
@@ -56,10 +57,14 @@ Feature: pain.002.001.03
     """
     When I parse the xml payload as pain.002.001.03
     Then the result hash map should be
-    """clojure
-    {:original-group-information-and-status {:original-message-identification "20110102-0000001"
-                                             :original-message-name-identification "pain.001.001.03"
-                                             :group-status "RJCT"
-                                             :status-reason-information {:reason-code "NARR"
-                                                                         :additional-information "pain.001.001.03 could not be processed, please verify structure. cvc-datatype-valid.1.2.1: '4847,37' is not a valid value for 'decimal'.cvc-type.3.1.3: The value '4847,37' of element 'CtrlSum' is not valid."}}}
+    """js
+    {
+      originalMessageIdentification: "20110102-0000001",
+      originalMessageNameIdentification: "pain.001.001.03",
+      groupStatus: "RJCT",
+      statusReasonInformation: {
+        reasonCode: "NARR",
+        additionalInformation: "pain.001.001.03 could not be processed, please verify structure. cvc-datatype-valid.1.2.1: '4847,37' is not a valid value for 'decimal'.cvc-type.3.1.3: The value '4847,37' of element 'CtrlSum' is not valid."
+      }
+    }
     """
