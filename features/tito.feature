@@ -71,17 +71,23 @@ Feature: TITO
     """
     When I parse the file as TITO
     Then the result hash map should be
-    """clojure
-    {:header {:bban "19503000000010"
-              :statement-number 44
-              :date-start "2006-03-06"
-              :date-end "2006-03-06"
-              :creation-date "2006-03-06"
-              :creation-time "23:59"
-              :contract-id "44444444"
-              :currency "EUR"
-              :account-name "Shekkitili"
-              :account-owner-name "POHJANLINNAN RAUTATALO"
-              :bank-contact-information "Nordea Pankki Suomi Oyj Y-tunn 1680235-8"
-              :bank-contact-information-details "1950 Demokonttori"}}
+    """js
+    {
+      header: {
+        bban: "19503000000010",
+        statementNumber: "044",
+        startDate: "2006-03-06",
+        endDate: "2006-03-06",
+        creationDate: "2006-03-06",
+        creationTime: "23:59",
+        contractId: "44444444",
+        currency: "EUR",
+        accountName: "Shekkitili",
+        accountOwnerName: "POHJANLINNAN RAUTATALO",
+        bankContactInformation: "Nordea Pankki Suomi Oyj Y-tunn 1680235-8",
+        bankContactInformationDetails: "1950 Demokonttori",
+        iban: 'FI4819503000000010',
+        bic: 'NDEAFIHH'
+      }
+    }
     """
