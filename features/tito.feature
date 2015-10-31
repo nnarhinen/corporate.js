@@ -67,6 +67,7 @@ Feature: TITO
         withdrawalAmount: -228457.89
       }],
       entries: [{
+        id: 1,
         archiveId: '0303A2584SM0700249',
         bookingDate: '2006-03-06',
         valueDate: '2006-03-06',
@@ -78,6 +79,7 @@ Feature: TITO
         referenceNumber: '',
         additionalInformation: ["2584SMM0829720 MAKSAJAN ILMOITTAMA SAAJAN NIMI: IRONHOUSE NC POHJANL", "LÄHETTÄJÄN OSOITE: JOKOHAMA LTD 351 (8 FL)BOSS Z2,SNOWLAKE OFFICE A ABB JOKOHAMA IRONSTREET 129 BXY 17"]
       }, {
+        id: 17,
         archiveId: '',
         bookingDate: '2006-03-06',
         valueDate: '0000-00-00',
