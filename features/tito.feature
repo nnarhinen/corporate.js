@@ -35,7 +35,9 @@ Feature: TITO
         bankContactInformation: "Nordea Pankki Suomi Oyj Y-tunn 1680235-8",
         bankContactInformationDetails: "1950 Demokonttori",
         iban: 'FI4819503000000010',
-        bic: 'NDEAFIHH'
+        bic: 'NDEAFIHH',
+        startBalanceDate: '2006-03-03',
+        startBalance: 4409.27
       },
       balances: [{
         bookingDate: "2006-03-06",
