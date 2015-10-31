@@ -23,6 +23,7 @@
   },
   "jshintConfig": {
     "strict": true,
-    "node": true
+    "node": true,
+    "unused": true
   }
 }

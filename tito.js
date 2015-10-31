@@ -1,8 +1,7 @@
 "use strict";
 module.exports = parseTito;
 
-var XRegExp = require('xregexp'),
-    lazy = require('lazy.js');
+var XRegExp = require('xregexp');
 
 
 var basicInfoRe = new XRegExp('^T00' +
