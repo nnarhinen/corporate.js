@@ -317,8 +317,8 @@ Feature: camt.053.001.02
                 }
               },
               remittanceInformation: {
-                txt: 'Message on statement',
-                referenceNumber: '00000000803628206247'
+                referenceNumber: '00000000803628206247',
+                unstructured: ['Message on statement']
               },
               relatedDates: {
                 acceptanceDateTime: "2014-01-03T00:00:00+02:00"
