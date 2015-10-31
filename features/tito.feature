@@ -42,6 +42,28 @@ Feature: TITO
         amount: 17050.24,
         availableAmount: 0.0
       }],
+      transactionSummaries: [{
+        summaryType: '1', // Day
+        summaryDate: '2006-03-06',
+        depositCount: 11,
+        depositAmount: 42371.30,
+        withdrawalCount: 10,
+        withdrawalAmount: -29730.33
+      }, {
+        summaryType: '3', // Month
+        summaryDate: '2006-03-06',
+        depositCount: 0,
+        depositAmount: 96934.20,
+        withdrawalCount: 0,
+        withdrawalAmount: -124944.89
+      }, {
+        summaryType: '4', // Year
+        summaryDate: '2006-03-06',
+        depositCount: 0,
+        depositAmount: 297671.48,
+        withdrawalCount: 0,
+        withdrawalAmount: -228457.89
+      }],
       entries: [{
         archiveId: '0303A2584SM0700249',
         bookingDate: '2006-03-06',
