@@ -171,6 +171,36 @@ Feature: camt.053.001.02
                     <Issr>FFFS</Issr>
                   </Prtry>
                 </BkTxCd>
+                <RltdPties>
+                  <Cdtr>
+                    <Nm>John Doe</Nm>
+                  </Cdtr>
+                  <CdtrAcct>
+                    <Id>
+                      <IBAN>[IBANNUMBER]</IBAN>
+                    </Id>
+                  </CdtrAcct>
+                </RltdPties>
+                <RltdAgts>
+                  <CdtrAgt>
+                    <FinInstnId>
+                      <BIC>NDEAFIHH</BIC>
+                    </FinInstnId>
+                  </CdtrAgt>
+                </RltdAgts>
+                <RmtInf>
+                  <Ustrd>Message on statement</Ustrd>
+                  <Strd>
+                    <CdtrRefInf>
+                      <Tp>
+                        <CdOrPrtry>
+                          <Cd>SCOR</Cd>
+                        </CdOrPrtry>
+                      </Tp>
+                      <Ref>00000000803628206247</Ref>
+                    </CdtrRefInf>
+                  </Strd>
+                </RmtInf>								
                 <RltdDts>
                   <AccptncDtTm>2014-01-03T00:00:00+02:00</AccptncDtTm>
                 </RltdDts>
@@ -279,6 +309,16 @@ Feature: camt.053.001.02
                 domainSubFamilyCode: "DMCT",
                 proprietaryCode: "710TILISIIRTO",
                 proprietaryIssuer: "FFFS"
+              },
+              relatedParties: {
+                creditorName: 'John Doe',
+                creditorAccount: {
+                  iban: '[IBANNUMBER]'
+                }
+              },
+              remittanceInformation: {
+                txt: 'Message on statement',
+                referenceNumber: '00000000803628206247'
               },
               relatedDates: {
                 acceptanceDateTime: "2014-01-03T00:00:00+02:00"
