@@ -19,8 +19,8 @@ var basicInfoRe = new XRegExp('^T00' +
                               '(?<accountName>                    .     {30} )' +
                               '(?<devnull2>                       .     {18} )' +
                               '(?<accountOwnerName>               .     {35} )' +
-                              '(?<bankContactInformation>        .     {40} )' +
-                              '(?<bankContactInformationDetails> .     {40} )' +
+                              '(?<bankContactInformation>         .     {40} )' +
+                              '(?<bankContactInformationDetails>  .     {40} )' +
                               '(?<devnull3>                       .     {30} )' +
                               '(?<iban>                           .     {18} ) \\ ' +
                               '(?<bic>                            .     {8}  )', 'x');
