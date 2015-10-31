@@ -45,9 +45,18 @@ var additionalEntryInfoRe = new XRegExp('^T11' +
                                         '(?<infoLength> [0-9] {3} )' +
                                         '(?<infoType>   .     {2} )', 'x');
 
+var balanceRe = new XRegExp('^T40' +
+                            '(?<infoLength>          .     {3}  )' +
+                            '(?<bookingDate>         [0-9] {6}  )' +
+                            '(?<amountSign>          .     {1}  )' +
+                            '(?<amount>              [0-9] {18} )' +
+                            '(?<availableAmountSign> .     {1}  )' +
+                            '(?<availableAmount>     [0-9] {18} )', 'x');
+
 function parseTito(txt) {
   var headerInfo,
-      entries = [];
+      entries = [],
+      balances = [];
   txt.split("\n").forEach(function(line) {
     line = line.replace(/\}/g, 'å')
                .replace(/{/g, 'ä')
@@ -98,11 +107,19 @@ function parseTito(txt) {
         }
         entry.additionalInformation.push(parts.join(' '));
       }
+    } else if (balanceRe.test(line)) {
+      m = XRegExp.exec(line, balanceRe);
+      balances.push({
+        bookingDate: stringToDateString(m.bookingDate),
+        amount: Number(m.amount) / 100 * (m.amountSign === '-' ? -1 : 1),
+        availableAmount: Number(m.availableAmount) / 100 * (m.availableAmountSign === '-' ? -1 : 1)
+      });
     }
   });
   return {
     header: headerInfo,
-    entries: entries
+    entries: entries,
+    balances: balances
   };
 }
 

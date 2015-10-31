@@ -37,6 +37,11 @@ Feature: TITO
         iban: 'FI4819503000000010',
         bic: 'NDEAFIHH'
       },
+      balances: [{
+        bookingDate: "2006-03-06",
+        amount: 17050.24,
+        availableAmount: 0.0
+      }],
       entries: [{
         archiveId: '0303A2584SM0700249',
         bookingDate: '2006-03-06',
