@@ -224,7 +224,7 @@ Feature: camt.053.001.02
         account: {
           iban: "FI1557169020004185",
           currency: "EUR",
-          accountOwnerName: null,
+          accountOwnerName: '',
           servicerName: "TURUN SEUDUN OSUUSPANKKI",
           servicerBic: "OKOYFIHH"
         },
