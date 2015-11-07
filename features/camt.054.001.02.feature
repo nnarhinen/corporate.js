@@ -113,7 +113,7 @@ Feature: camt.054.001.02
                     </Fmly>
                   </Domn>
                   <Prtry>
-                    <Cd>700 SIIRTO/</Cd>
+                    <Cd>700 SIIRTO</Cd>
                     <Issr>FFFS</Issr>
                   </Prtry>
                 </BkTxCd>
@@ -156,7 +156,7 @@ Feature: camt.054.001.02
                     </Fmly>
                   </Domn>
                   <Prtry>
-                    <Cd>700 SIIRTO/</Cd>
+                    <Cd>700 SIIRTO</Cd>
                     <Issr>FFFS</Issr>
                   </Prtry>
                 </BkTxCd>
@@ -261,5 +261,134 @@ Feature: camt.054.001.02
         </Ntfctn>
       </BkToCstmrDbtCdtNtfctn>
     </Document>
+    """
+    When I parse the xml payload as camt.054.001.02
+    Then the result hash map should be
+    """js
+    {
+      notifications: [{
+        identification: "IOY7M2WUIWVD",
+        electronicSequenceNumber: "2",
+        creationDateTime: "2011-09-19T01:04:01",
+        fromDateTime: "2011-09-16T01:01:01",
+        toDateTime: "2011-09-16T23:59:59",
+        account: {
+          iban: "FI9881234511224450",
+          currency: "EUR",
+          name: "Maksuliiketili",
+          accountOwnerName: "Oy Yritys Ab",
+          servicerBic: "DABAFIHH"
+        },
+        transactionSummary: {
+          numberOfEntries: 2,
+          numberOfCreditEntries: 2,
+          sumOfCreditEntries: 193.0,
+          numberOfDebitEntries: 0,
+          sumOfDebitEntries: 0
+        },
+        entries: [{
+          entryReference: "1",
+          amount: 183.0,
+          amountCurrency: "EUR",
+          creditDebitIndicator: "CRDT",
+          status: "BOOK",
+          bookingDate: "2011-09-16",
+          valueDate: "2011-09-16",
+          accountServicerReference: "REFP2011034",
+          bankTransactionCode: {
+            domainCode: "PMNT",
+            domainFamilyCode: "RCDT",
+            domainSubFamilyCode: "NTAV",
+            proprietaryCode: "705 VIITESIIRROT",
+            proprietaryIssuer: "FFFS"
+          },
+          entryDetails: {
+            batch: {
+              numberOfTransactions: 2
+            },
+            transactionDetails: [{
+              transactionAmount: 147.0,
+              transactionAmountCurrency: "EUR",
+              bankTransactionCode: {
+                domainCode: "PMNT",
+                domainFamilyCode: "RCDT",
+                domainSubFamilyCode: "NTAV",
+                proprietaryCode: "700 SIIRTO",
+                proprietaryIssuer: "FFFS"
+              },
+              relatedParties: {
+                debitorName: 'Maksaja'
+              },
+              remittanceInformation: {
+                referenceNumber: '123'
+              },
+              relatedDates: {
+                acceptanceDateTime: "2011-09-16T13:35:18"
+              }
+            },{
+              transactionAmount: 36.0,
+              transactionAmountCurrency: "EUR",
+              bankTransactionCode: {
+                domainCode: "PMNT",
+                domainFamilyCode: "RCDT",
+                domainSubFamilyCode: "NTAV",
+                proprietaryCode: "700 SIIRTO",
+                proprietaryIssuer: "FFFS"
+              },
+              relatedParties: {
+                debitorName: 'Maksaja'
+              },
+              remittanceInformation: {
+                referenceNumber: 'RF74100978'
+              },
+              relatedDates: {
+                acceptanceDateTime: "2011-09-16T13:35:18"
+              }
+            }]
+          }
+        },{
+          entryReference: "2",
+          amount: 10.0,
+          amountCurrency: "EUR",
+          creditDebitIndicator: "CRDT",
+          status: "BOOK",
+          bookingDate: "2011-09-16",
+          valueDate: "2011-09-16",
+          accountServicerReference: "RFDI2011030",
+          bankTransactionCode: {
+            domainCode: "PMNT",
+            domainFamilyCode: "IDDT",
+            domainSubFamilyCode: "PMDD",
+            proprietaryCode: "704 SUORAVELOITUKSET",
+            proprietaryIssuer: "FFFS"
+          },
+          entryDetails: {
+            batch: {
+              numberOfTransactions: 1
+            },
+            transactionDetails: [{
+              transactionAmount: 10.0,
+              transactionAmountCurrency: "EUR",
+              bankTransactionCode: {
+                domainCode: "PMNT",
+                domainFamilyCode: "IDDT",
+                domainSubFamilyCode: "PMDD",
+                proprietaryCode: "704 SUORAVELOITUS",
+                proprietaryIssuer: "FFFS"
+              },
+              relatedParties: {
+                debitorName: 'Maksaja'
+              },
+              remittanceInformation: {
+                referenceNumber: '00000006450830029863'
+              },
+              relatedDates: {
+                acceptanceDateTime: "2011-09-16T03:02:54"
+              }
+            }]
+          }
+        }]
+      }]
+    }
     """
 
