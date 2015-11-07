@@ -11,4 +11,8 @@ module.exports = function() {
     this.parsedResult = corporate.tito(this.text);
     callback();
   });
+  this.When(/^I parse the file as KTL$/, function (callback) {
+    this.parsedResult = corporate.ktl(this.text);
+    callback();
+  });
 };
