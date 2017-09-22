@@ -300,7 +300,7 @@ Feature: camt.053.001.02
             proprietaryIssuer: "FFFS"
           },
           entryDetails: {
-            transactionDetails: [{
+            transactionDetails: {
               transactionAmount: 1159.23,
               transactionAmountCurrency: "EUR",
               bankTransactionCode: {
@@ -323,7 +323,7 @@ Feature: camt.053.001.02
               relatedDates: {
                 acceptanceDateTime: "2014-01-03T00:00:00+02:00"
               }
-            }]
+            }
           }
         }]
       }]
