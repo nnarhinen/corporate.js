@@ -324,7 +324,8 @@ Feature: camt.054.001.02
               },
               relatedDates: {
                 acceptanceDateTime: "2011-09-16T13:35:18"
-              }
+              },
+              accountServicerReference: "1109168E0049198529"
             },{
               transactionAmount: 36.0,
               transactionAmountCurrency: "EUR",
@@ -343,7 +344,8 @@ Feature: camt.054.001.02
               },
               relatedDates: {
                 acceptanceDateTime: "2011-09-16T13:35:18"
-              }
+              },
+              accountServicerReference: "1109168E0049198530"
             }]
           }
         },{
@@ -384,11 +386,11 @@ Feature: camt.054.001.02
               },
               relatedDates: {
                 acceptanceDateTime: "2011-09-16T03:02:54"
-              }
+              },
+              accountServicerReference: "1109158E0049179974"
             }]
           }
         }]
       }]
     }
     """
-
