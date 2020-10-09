@@ -411,3 +411,101 @@ Feature: pain.002.001.03
       }]
     }
     """
+
+  Scenario: rejected payment material 2
+    Given xml payload:
+    """xml
+      <?xml version="1.0" encoding="UTF-8"?>
+      <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "urn:iso:std:iso:20022:tech:xsd:pain.002.001.03 pain.002.001.03.xsd">
+        <CstmrPmtStsRpt>
+          <GrpHdr>
+            <MsgId>Y0012019011417104982</MsgId>
+            <CreDtTm>2019-01-14T15:10:49Z</CreDtTm>
+          </GrpHdr>
+          <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>1547478597597</OrgnlMsgId>
+            <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+            <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+            <GrpSts>RJCT</GrpSts>
+            <StsRsnInf>
+              <Orgtr>
+                <Id>
+                  <OrgId>
+                    <BICOrBEI>NDEAFIHH</BICOrBEI>
+                  </OrgId>
+                </Id>
+              </Orgtr>
+            </StsRsnInf>
+            <NbOfTxsPerSts>
+              <DtldNbOfTxs>1</DtldNbOfTxs>
+              <DtldSts>RJCT</DtldSts>
+              <DtldCtrlSum>0.00</DtldCtrlSum>
+            </NbOfTxsPerSts>
+          </OrgnlGrpInfAndSts>
+          <OrgnlPmtInfAndSts>
+            <OrgnlPmtInfId>1547478597597-G-1</OrgnlPmtInfId>
+            <PmtInfSts>RJCT</PmtInfSts>
+            <StsRsnInf>
+              <AddtlInf>Koko erä hylätty.</AddtlInf>
+            </StsRsnInf>
+            <StsRsnInf></StsRsnInf>
+            <TxInfAndSts>
+              <OrgnlEndToEndId>1547478597597-G-1-P-1</OrgnlEndToEndId>
+              <TxSts>RJCT</TxSts>
+              <StsRsnInf>
+                <Rsn>
+                  <Cd>AM01</Cd>
+                </Rsn>
+                <AddtlInf>Nolla-summa tilisiirrossa.</AddtlInf>
+              </StsRsnInf>
+              <OrgnlTxRef>
+                <Amt>
+                  <InstdAmt Ccy="EUR">0.00000</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                  <FinInstnId>
+                    <BIC>OKOYFIHH</BIC>
+                  </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                  <Nm>Tomi Nokkala</Nm>
+                </Cdtr>
+                <CdtrAcct>
+                  <Id>
+                    <IBAN>FI0757107020059205</IBAN>
+                  </Id>
+                </CdtrAcct>
+              </OrgnlTxRef>
+            </TxInfAndSts>
+          </OrgnlPmtInfAndSts>
+        </CstmrPmtStsRpt>
+      </Document>
+    """
+    When I parse the xml payload as pain.002.001.03
+    Then the result hash map should be
+    """js
+    {
+      groupStatus: 'RJCT',
+      originalMessageIdentification: '1547478597597',
+      originalMessageNameIdentification: 'pain.001.001.03',
+      statusReasonInformation: { additionalInformation: '', reasonCode: '' },
+      paymentGroups: [
+        {
+          detailedPayments: [
+            {
+              originalEndToEndId: '1547478597597-G-1-P-1',
+              status: 'RJCT',
+              statusReasonInformation: {
+                additionalInformation: 'Nolla-summa tilisiirrossa.',
+                reasonCode: 'AM01'
+              }
+            }
+          ],
+          originalPaymentInformationId: '1547478597597-G-1',
+          paymentInformationStatus: 'RJCT',
+          statusReasonInformation: { additionalInformation: 'Koko erä hylätty.', reasonCode: '' }
+        }
+      ]
+    }
+    """
