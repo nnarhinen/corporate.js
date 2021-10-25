@@ -207,6 +207,65 @@ Feature: camt.053.001.02
               </TxDtls>
             </NtryDtls>
           </Ntry>
+          <Ntry>
+            <NtryRef>000002</NtryRef>
+            <Amt Ccy="EUR">250.00</Amt>
+            <CdtDbtInd>CRDT</CdtDbtInd>
+            <Sts>BOOK</Sts>
+            <BookgDt>
+              <Dt>2021-09-15</Dt>
+            </BookgDt>
+            <ValDt>
+              <Dt>2021-09-15</Dt>
+            </ValDt>
+            <AcctSvcrRef>2109155936192D0092</AcctSvcrRef>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>RCDT</Cd>
+                  <SubFmlyCd>ESCT</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>700TILISIIRTO</Cd>
+                <Issr>FFFS</Issr>
+              </Prtry>
+            </BkTxCd>
+            <NtryDtls>
+            <TxDtls>
+              <AmtDtls>
+                <TxAmt>
+                  <Amt Ccy="EUR">250.00</Amt>
+                </TxAmt>
+              </AmtDtls>
+              <BkTxCd>
+                <Domn>
+                  <Cd>PMNT</Cd>
+                  <Fmly>
+                    <Cd>RCDT</Cd>
+                    <SubFmlyCd>ESCT</SubFmlyCd>
+                  </Fmly>
+                </Domn>
+                <Prtry>
+                  <Cd>700TILISIIRTO</Cd>
+                  <Issr>FFFS</Issr>
+                </Prtry>
+              </BkTxCd>
+              <RltdPties>
+                <Dbtr>
+                  <Nm>DON DEBITOR</Nm>
+                </Dbtr>
+              </RltdPties>
+              <RmtInf>
+                <Ustrd>Unstructured message</Ustrd>
+              </RmtInf>
+              <RltdDts>
+                <AccptncDtTm>2021-09-15T00:00:00+02:00</AccptncDtTm>
+              </RltdDts>
+            </TxDtls>
+          </NtryDtls>
+			  </Ntry>
         </Stmt>
       </BkToCstmrStmt>
     </Document>
@@ -314,7 +373,8 @@ Feature: camt.053.001.02
                 creditorName: 'John Doe',
                 creditorAccount: {
                   iban: '[IBANNUMBER]'
-                }
+                },
+                debitorName: ''
               },
               remittanceInformation: {
                 referenceNumber: '00000000803628206247',
@@ -322,6 +382,49 @@ Feature: camt.053.001.02
               },
               relatedDates: {
                 acceptanceDateTime: "2014-01-03T00:00:00+02:00"
+              }
+            }
+          }
+        },{
+          entryReference: "000002",
+          amount: 250,
+          amountCurrency: "EUR",
+          creditDebitIndicator: "CRDT",
+          status: "BOOK",
+          bookingDate: "2021-09-15",
+          valueDate: "2021-09-15",
+          accountServicerReference: "2109155936192D0092",
+          bankTransactionCode: {
+            domainCode: "PMNT",
+            domainFamilyCode: "RCDT",
+            domainSubFamilyCode: "ESCT",
+            proprietaryCode: "700TILISIIRTO",
+            proprietaryIssuer: "FFFS"
+          },
+          entryDetails: {
+            transactionDetails: {
+              transactionAmount: 250,
+              transactionAmountCurrency: "EUR",
+              bankTransactionCode: {
+                domainCode: "PMNT",
+                domainFamilyCode: "RCDT",
+                domainSubFamilyCode: "ESCT",
+                proprietaryCode: "700TILISIIRTO",
+                proprietaryIssuer: "FFFS"
+              },
+              relatedParties: {
+                creditorName: '',
+                creditorAccount: {
+                  iban: ''
+                },
+                debitorName: 'DON DEBITOR'
+              },
+              remittanceInformation: {
+                referenceNumber: '',
+                unstructured: ['Unstructured message']
+              },
+              relatedDates: {
+                acceptanceDateTime: "2021-09-15T00:00:00+02:00"
               }
             }
           }
@@ -643,7 +746,8 @@ Feature: camt.053.001.02
                 creditorName: 'John Doe',
                 creditorAccount: {
                   iban: '[IBANNUMBER]'
-                }
+                },
+                debitorName: ''
               },
               remittanceInformation: {
                 referenceNumber: '00000000803628206247',
