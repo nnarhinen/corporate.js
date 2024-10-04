@@ -9,7 +9,7 @@
   "author": "Niklas Närhinen <niklas@narhinen.net>",
   "license": "MIT",
   "devDependencies": {
-    "cucumber": "^6.0.7",
+    "cucumber": "^0.4.9",
     "should": "^4.3.0",
     "sinon": "^1.12.1"
   },

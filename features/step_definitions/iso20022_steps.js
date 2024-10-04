@@ -72,6 +72,11 @@ module.exports = function() {
     callback();
   });
 
+  this.When(/^I parse the xml payload as camt\.052\.001\.02$/, function (callback) {
+    this.parsedResult = corporate.camt05200102(this.xml);
+    callback();
+  });
+
   this.Then(/^the result hash map should be$/, function (string, callback) {
     var expected = eval('(' + string + ')');
     this.parsedResult.should.eql(expected);

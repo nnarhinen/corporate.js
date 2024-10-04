@@ -254,21 +254,30 @@ Feature: camt.052.001.02
     """
     When I parse the xml payload as camt.052.001.02
     Then the result hash map should be
-    """clojure
-    {:reports ({:identification "TAPAHTUMAOTEKYSELY"
-                :creation-date-time "2013-12-29T13:50:31+02:00"
-                :account {:iban "FI4819503000000010"
-                          :account-type-name "YRITYSTILI"
-                          :account-owner-name "VALLILAN YRITYS OY"
-                          :currency "EUR"}
-                :balances ({:amount 12345.6
-                            :amount-currency "EUR"
-                            :type "ITBD"
-                            :date "2013-12-29"}
-                           {:amount 2234.56
-                            :amount-currency "EUR"
-                            :type "ITAV" 
-                            :date "2013-12-29"})})}
+    """js
+    {
+      reports: [{
+        identification: "TAPAHTUMAOTEKYSELY",
+        creationDateTime: "2013-12-29T13:50:31+02:00",
+        account: { 
+          iban: "FI4819503000000010",
+          accountTypeName: "YRITYSTILI",
+          accountOwnerName: "VALLILAN YRITYS OY",
+          currency: "EUR"
+        },
+        balances: [{
+          amount: 12345.6,
+          amountCurrency: "EUR",
+          type: "ITBD",
+          date: "2013-12-29"
+        }, {
+          amount: 2234.56,
+          amountCurrency: "EUR",
+          type: "ITAV",
+          date: "2013-12-29"
+        }]
+      }]
+    }
     """
 
                  
